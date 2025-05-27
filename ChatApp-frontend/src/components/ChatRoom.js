@@ -34,7 +34,6 @@ setUserData((prevState) => ({ ...prevState, connected: true }));
 
 stompClient.subscribe('/chatroom/public', onMessageReceived);
 stompClient.subscribe('/user/' + username + '/private', onPrivateMessage);
-stompClient.subscribe('/user/' + username + '/active-users', onActiveUsersReceived);
 
         userJoin();
     }
@@ -103,21 +102,7 @@ stompClient.subscribe('/user/' + username + '/active-users', onActiveUsersReceiv
             setPrivateChats(new Map(privateChats));
         }
     }
-    const onActiveUsersReceived = (payload) => {
-    const activeUsers = JSON.parse(payload.body);
-    console.log("Received active users:", activeUsers);
-
-    const newPrivateChats = new Map(privateChats);
-
-    activeUsers.forEach((user) => {
-        if (user !== userData.username && !newPrivateChats.has(user)) {
-            newPrivateChats.set(user, []);
-        }
-    });
-
-    setPrivateChats(newPrivateChats);
-};
-
+  
     const onError = (err) => {
         console.log(err);
         
