@@ -1,0 +1,18 @@
+# Ignore frontend dependencies
+chatApp-frontend/node_modules/
+chatApp-frontend/build/
+
+# Ignore backend build files
+chatApp-backend/target/
+
+# IDE files
+*.iml
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+*.env
